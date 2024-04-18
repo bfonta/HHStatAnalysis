@@ -35,7 +35,7 @@ class NonResonantModelNLO:
         self.A =  [[[0 for MHHbin in range(self.NMHHbin)] for CostHHbin in range(self.NCostHHbin)] for coef in range(self.NCoef)]
         self.A13tev = [62.5088, 345.604, 9.63451, 4.34841, 39.0143, -268.644, -44.2924, 96.5595, 53.515, -155.793, -23.678, 54.5601, 12.2273, -26.8654, -19.3723, -0.0904439, 0.321092, 0.452381, -0.0190758, -0.607163, 1.27408, 0.364487, -0.499263] # from https://github.com/pmandrik/VSEVA/blob/master/HHWWgg/reweight/reweight_HH.C#L117
         self.Cnorm=0
-        print "initialize"
+        print("initialize")
 
     # Declare the function
     def functionGF(self, kl,kt,c2,cg,c2g,A): 
@@ -100,7 +100,7 @@ class NonResonantModelNLO:
                 for coef in range (0,self.NCoef):
                     self.A[coef][costhetabin][MHHbin] = float(tokens[5+coef])
         f.close()
-        print "Stored coefficients by bin"
+        print("Stored coefficients by bin")
 
     def getTotalXS(self, kl, kt, c2, cg, c2g):
         return self.functionGF(kl,kt,c2,cg,c2g,self.A13tev)
@@ -164,7 +164,7 @@ class NonResonantModelNLO:
 
     def CalculateMhhCost(self,mhhcost,countline,Px,Py,Pz,En) :
         # calculate reweigthing 
-        if abs(Px[0])!= abs(Px[1]) : print "error parsing ascii file"
+        if abs(Px[0])!= abs(Px[1]) : print("error parsing ascii file")
         P1 = ROOT.TLorentzVector()
         P1.SetPxPyPzE(Px[0],Py[0],Pz[0],En[0])    
         P2 = ROOT.TLorentzVector()
